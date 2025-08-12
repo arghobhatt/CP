@@ -1,0 +1,49 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+    // Declare empty map (key: int, value: string)
+    map<int, string> m;
+
+    // Insert elements
+    m[1] = "one";               // Using []
+    m[2] = "two";
+    m.insert({3, "three"});     // Using insert()
+    m.emplace(4, "four");       // Using emplace()
+
+    // Update a value
+    m[2] = "TWO";
+
+    // Access elements
+    cout << "m[1] = " << m[1] << "\n";       // Direct access
+    cout << "m.at(3) = " << m.at(3) << "\n"; // at() access
+
+    // Iterate through map
+    cout << "\nAll elements:\n";
+    for (auto &p : m) {
+        cout << p.first << " -> " << p.second << "\n";
+    }
+
+    // Search for a key
+    auto it = m.find(4);
+    if (it != m.end()) {
+        cout << "\nFound key 4: " << it->second << "\n";
+    }
+
+    // Erase an element
+    m.erase(3);
+
+    // Check size
+    cout << "\nSize after erase: " << m.size() << "\n";
+
+    // Reverse iteration
+    cout << "Reverse order:\n";
+    for (auto rit = m.rbegin(); rit != m.rend(); ++rit) {
+        cout << rit->first << " -> " << rit->second << "\n";
+    }
+
+    // Clear all
+    m.clear();
+    cout << "\nMap empty? " << (m.empty() ? "Yes" : "No") << "\n";
+}
